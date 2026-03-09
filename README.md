@@ -116,35 +116,6 @@ The authenticated user is needed in the Header, ProfileMenu, and App simultaneou
 
 ---
 
-## Data Model
-
-```ts
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-  todos: Todo[];
-};
-
-type Todo = {
-  id: string;
-  text: string;
-  completed: boolean;
-  priority: "low" | "medium" | "high";
-  createdAt: number;
-  dueDate?: string;
-  dueTime?: string;
-  tags: string[];
-  column: "todo" | "doing" | "done";
-};
-```
-
-localStorage keys:
-```
-today_users    →  User[]    (all registered accounts)
-today_session  →  string    (currently logged-in user ID)
-```
 
 ---
 
