@@ -2,11 +2,12 @@ import { useState } from "react";
 import { useAuth } from "../auth/useAuth";
 
 type Props = {
-  onGoToSignUp:  () => void;
-  onGuestMode:   () => void;
+  onGoToSignUp: () => void;
+  onGuestMode:  () => void;
+  onSuccess:    () => void;  
 };
 
-export default function SignIn({ onGoToSignUp, onGuestMode }: Props) {
+export default function SignIn({ onGoToSignUp, onGuestMode, onSuccess }: Props) {
   const { signIn } = useAuth();
   const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
@@ -15,8 +16,8 @@ export default function SignIn({ onGoToSignUp, onGuestMode }: Props) {
   const handleSubmit = () => {
     if (!email || !password) { setError("Please fill in all fields."); return; }
     const err = signIn(email, password);
-    if (err) setError(err);
-    // On success, AuthContext updates user state — App.tsx will re-render automatically
+    if (err) { setError(err); return; }
+    onSuccess(); 
   };
 
   return (
@@ -28,16 +29,15 @@ export default function SignIn({ onGoToSignUp, onGuestMode }: Props) {
 
         {error && <div style={errorBox}>{error}</div>}
 
-        <input style={input} placeholder="Email"    value={email}    onChange={(e) => setEmail(e.target.value)}    type="email" />
-        <input style={input} placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} type="password"
+        <input style={input} placeholder="Email"    value={email}
+               onChange={(e) => setEmail(e.target.value)} type="email" />
+        <input style={input} placeholder="Password" value={password}
+               onChange={(e) => setPassword(e.target.value)} type="password"
                onKeyDown={(e) => e.key === "Enter" && handleSubmit()} />
 
         <button style={btn} onClick={handleSubmit}>Sign In</button>
-
         <div style={{ height: "1px", background: "#1e2130", margin: "4px 0" }} />
-
         <button style={guestBtn} onClick={onGuestMode}>Continue as Guest</button>
-
         <p style={link} onClick={onGoToSignUp}>
           Don't have an account? <span style={linkSpan}>Sign Up</span>
         </p>

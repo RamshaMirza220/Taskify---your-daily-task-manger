@@ -42,7 +42,7 @@ export default function App() {
   const t = isDark ? THEMES.dark : THEMES.light;
 
   if (authPage === "signup") return <SignUp onGoToSignIn={() => setAuthPage("signin")} />;
-  if (authPage === "signin") return <SignIn onGoToSignUp={() => setAuthPage("signup")} onGuestMode={() => setAuthPage(null)} />;
+  if (authPage === "signin") return <SignIn onGoToSignUp={() => setAuthPage("signup")} onGuestMode={() => setAuthPage(null)} onSuccess={() => setAuthPage(null)} />;
 
   const filtered = todos
     .filter((td) => filter === "Active" ? !td.completed : filter === "Completed" ? td.completed : true)
