@@ -5,7 +5,6 @@
 ![React](https://img.shields.io/badge/React-18-61dafb?style=flat-square&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=flat-square&logo=typescript)
 ![Vite](https://img.shields.io/badge/Vite-5-646cff?style=flat-square&logo=vite)
-![No Backend](https://img.shields.io/badge/Backend-None-10b981?style=flat-square)
 
 ---
 
